@@ -1,0 +1,7 @@
+wrangler.jsonc
+.assetsignore
+.gitignore
+README.md
+serve.py
+.git
+.DS_Store
