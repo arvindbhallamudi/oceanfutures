@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ocean Maps: Live Explorer | Ocean Futures</title>
+<meta name="description" content="An interactive world ocean map, real sea surface temperature, sea level trends, marine ecosystems, at-risk biodiversity and live shipping data, grouped by theme." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%230A2B39'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23BFBFBF'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="css/style.css?v=39" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.0/maplibre-gl.min.css" />
+<style>body{overflow:hidden;}</style>
+</head>
+<body>
+<div class="boot-loader" id="bootLoader" aria-hidden="true">
+  <div class="bl-waves">
+    <svg class="bl-wave1" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M238.498 14.9223C264.681 -3.64087 299.734 -3.64087 325.916 14.9223C341.049 25.6514 359.526 30.6025 377.997 28.8774C409.953 25.8925 440.31 43.4185 453.704 72.5864C461.445 89.4446 474.97 102.97 491.829 110.711C520.996 124.105 538.522 154.462 535.538 186.418C533.812 204.889 538.764 223.365 549.493 238.498C568.056 264.681 568.056 299.734 549.493 325.916C538.764 341.049 533.812 359.526 535.538 377.997C538.522 409.953 520.996 440.31 491.829 453.704C474.97 461.445 461.445 474.97 453.704 491.829C440.31 520.996 409.953 538.522 377.997 535.538C359.526 533.812 341.049 538.764 325.916 549.493C299.734 568.056 264.681 568.056 238.498 549.493C223.365 538.764 204.889 533.812 186.418 535.538C154.462 538.522 124.105 520.996 110.711 491.829C102.97 474.97 89.4446 461.445 72.5864 453.704C43.4185 440.31 25.8925 409.953 28.8774 377.997C30.6025 359.526 25.6514 341.049 14.9223 325.916C-3.64087 299.734 -3.64087 264.681 14.9223 238.498C25.6514 223.366 30.6025 204.889 28.8774 186.418C25.8925 154.462 43.4185 124.105 72.5864 110.711C89.4446 102.97 102.97 89.4446 110.711 72.5864C124.105 43.4185 154.462 25.8925 186.418 28.8774C204.889 30.6025 223.366 25.6514 238.498 14.9223Z" transform="translate(10.0,10.0) scale(0.17718)" fill="none" stroke="#5FC9C2" stroke-opacity="0.85" stroke-width="14.11"/></svg>
+    <svg class="bl-wave2" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M238.498 14.9223C264.681 -3.64087 299.734 -3.64087 325.916 14.9223C341.049 25.6514 359.526 30.6025 377.997 28.8774C409.953 25.8925 440.31 43.4185 453.704 72.5864C461.445 89.4446 474.97 102.97 491.829 110.711C520.996 124.105 538.522 154.462 535.538 186.418C533.812 204.889 538.764 223.365 549.493 238.498C568.056 264.681 568.056 299.734 549.493 325.916C538.764 341.049 533.812 359.526 535.538 377.997C538.522 409.953 520.996 440.31 491.829 453.704C474.97 461.445 461.445 474.97 453.704 491.829C440.31 520.996 409.953 538.522 377.997 535.538C359.526 533.812 341.049 538.764 325.916 549.493C299.734 568.056 264.681 568.056 238.498 549.493C223.365 538.764 204.889 533.812 186.418 535.538C154.462 538.522 124.105 520.996 110.711 491.829C102.97 474.97 89.4446 461.445 72.5864 453.704C43.4185 440.31 25.8925 409.953 28.8774 377.997C30.6025 359.526 25.6514 341.049 14.9223 325.916C-3.64087 299.734 -3.64087 264.681 14.9223 238.498C25.6514 223.366 30.6025 204.889 28.8774 186.418C25.8925 154.462 43.4185 124.105 72.5864 110.711C89.4446 102.97 102.97 89.4446 110.711 72.5864C124.105 43.4185 154.462 25.8925 186.418 28.8774C204.889 30.6025 223.366 25.6514 238.498 14.9223Z" transform="translate(24.0,24.0) scale(0.12757)" fill="none" stroke="#C97F8E" stroke-opacity="0.65" stroke-width="19.60"/></svg>
+    <svg class="bl-wave3" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M238.498 14.9223C264.681 -3.64087 299.734 -3.64087 325.916 14.9223C341.049 25.6514 359.526 30.6025 377.997 28.8774C409.953 25.8925 440.31 43.4185 453.704 72.5864C461.445 89.4446 474.97 102.97 491.829 110.711C520.996 124.105 538.522 154.462 535.538 186.418C533.812 204.889 538.764 223.365 549.493 238.498C568.056 264.681 568.056 299.734 549.493 325.916C538.764 341.049 533.812 359.526 535.538 377.997C538.522 409.953 520.996 440.31 491.829 453.704C474.97 461.445 461.445 474.97 453.704 491.829C440.31 520.996 409.953 538.522 377.997 535.538C359.526 533.812 341.049 538.764 325.916 549.493C299.734 568.056 264.681 568.056 238.498 549.493C223.365 538.764 204.889 533.812 186.418 535.538C154.462 538.522 124.105 520.996 110.711 491.829C102.97 474.97 89.4446 461.445 72.5864 453.704C43.4185 440.31 25.8925 409.953 28.8774 377.997C30.6025 359.526 25.6514 341.049 14.9223 325.916C-3.64087 299.734 -3.64087 264.681 14.9223 238.498C25.6514 223.366 30.6025 204.889 28.8774 186.418C25.8925 154.462 43.4185 124.105 72.5864 110.711C89.4446 102.97 102.97 89.4446 110.711 72.5864C124.105 43.4185 154.462 25.8925 186.418 28.8774C204.889 30.6025 223.366 25.6514 238.498 14.9223Z" transform="translate(35.0,35.0) scale(0.08859)" fill="none" stroke="#BFBFBF" stroke-opacity="0.4" stroke-width="28.22"/></svg>
+  </div>
+</div>
+<div class="page-transition" id="pageTransition"></div>
+<script>
+(function(){
+  if (sessionStorage.getItem("pt-origin")) {
+    document.documentElement.classList.add("pt-incoming");
+    sessionStorage.removeItem("pt-origin");
+  }
+  if (location.search.indexOf("_r=") !== -1) {
+    var url = new URL(location.href);
+    url.searchParams.delete("_r");
+    history.replaceState(null, "", url.pathname + (url.search || "") + url.hash);
+  }
+})();
+</script>
+
+<div class="pt-content" id="ptContent">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand" aria-label="Ocean Futures home">
+      <svg class="logo-mark" width="34" height="34" viewBox="0 0 564.41 564.41" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M238.498 14.9223C264.681 -3.64087 299.734 -3.64087 325.916 14.9223C341.049 25.6514 359.526 30.6025 377.997 28.8774C409.953 25.8925 440.31 43.4185 453.704 72.5864C461.445 89.4446 474.97 102.97 491.829 110.711C520.996 124.105 538.522 154.462 535.538 186.418C533.812 204.889 538.764 223.365 549.493 238.498C568.056 264.681 568.056 299.734 549.493 325.916C538.764 341.049 533.812 359.526 535.538 377.997C538.522 409.953 520.996 440.31 491.829 453.704C474.97 461.445 461.445 474.97 453.704 491.829C440.31 520.996 409.953 538.522 377.997 535.538C359.526 533.812 341.049 538.764 325.916 549.493C299.734 568.056 264.681 568.056 238.498 549.493C223.365 538.764 204.889 533.812 186.418 535.538C154.462 538.522 124.105 520.996 110.711 491.829C102.97 474.97 89.4446 461.445 72.5864 453.704C43.4185 440.31 25.8925 409.953 28.8774 377.997C30.6025 359.526 25.6514 341.049 14.9223 325.916C-3.64087 299.734 -3.64087 264.681 14.9223 238.498C25.6514 223.366 30.6025 204.889 28.8774 186.418C25.8925 154.462 43.4185 124.105 72.5864 110.711C89.4446 102.97 102.97 89.4446 110.711 72.5864C124.105 43.4185 154.462 25.8925 186.418 28.8774C204.889 30.6025 223.366 25.6514 238.498 14.9223Z" fill="#EDEDED" fill-opacity="0.94" stroke="#ffffff" stroke-width="3"/></svg>
+      <span class="brand-word">OCEAN <span>FUTURES</span></span>
+    </a>
+    <div class="header-right">
+      <nav class="main-nav">
+      <a href="ocean-guide.html" class="nav-link">Ocean Guide</a>
+      <a href="map.html" class="nav-link">Ocean Maps</a>
+      <a href="insights.html" class="nav-link">Insights</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+    <button class="search-toggle" id="searchToggle" aria-label="Search"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+
+
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="text" id="searchInput" placeholder="Search Ocean Futures…" autocomplete="off" />
+      <button class="search-close" id="searchClose">ESC</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+<div class="mobile-nav-sheet" id="mobileNavSheet">
+  <div class="mns-head">
+    <span class="brand-word">MENU</span>
+    <button class="mns-close" id="mnsClose" aria-label="Close menu"><svg viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.5"/></svg></button>
+  </div>
+  <ul class="mns-list">
+    <li><a href="ocean-guide.html">Ocean Guide</a></li>
+    <li><a href="map.html">Ocean Maps</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</div>
+
+<div class="map-shell">
+  <div id="oceanMap"></div>
+
+  <div class="map-select" id="mapSelect">
+    <div class="map-select-label">Select a map</div>
+    <button class="map-select-pill" id="mapSelectPill">
+      <span id="mapSelectLabel">Select a map</span>
+      <svg class="msp-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg>
+    </button>
+
+    <div class="map-select-dropdown" id="mapSelectDropdown">
+      <!-- ================= CLIMATE ================= -->
+      <div class="map-group" data-group="climate">
+        <button class="map-group-head"><span class="mgh-title">Climate</span><svg class="mgh-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <div class="map-group-body">
+          <button class="map-option" data-layer="sst">
+            <div class="mo-title">Sea Surface Temperature</div>
+            <div class="mo-sub">NOAA ERSSTv5 · real yearly grids, 1900-2025 · timeline</div>
+          </button>
+          <button class="map-option" data-layer="sealevel">
+            <div class="mo-title">Sea Level Rise</div>
+            <div class="mo-sub">NOAA tide gauges · real, 510 stations, 1900-2025 · timeline</div>
+          </button>
+          <button class="map-option" data-layer="seaice">
+            <div class="mo-title">Sea Ice Concentration</div>
+            <div class="mo-sub">NOAA/NSIDC (G02202 v6) · real, September 1979-2025 · timeline</div>
+          </button>
+          <button class="map-option" data-layer="acidity">
+            <div class="mo-title">Ocean Acidity (pH)</div>
+            <div class="mo-sub">GLODAPv2 climatology (Lauvset et al. 2016) · real, exact grid values</div>
+          </button>
+          <button class="map-option" data-layer="salinity">
+            <div class="mo-title">Sea Surface Salinity</div>
+            <div class="mo-sub">GLODAPv2 climatology (Lauvset et al. 2016) · real, exact grid values</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= ECOSYSTEMS ================= -->
+      <div class="map-group" data-group="ecosystems">
+        <button class="map-group-head"><span class="mgh-title">Ecosystems</span><svg class="mgh-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <div class="map-group-body">
+          <button class="map-option" data-layer="mpa"><div class="mo-title">Marine Protected Areas</div><div class="mo-sub">24 major MPAs · 10 real traced boundaries (OSM) · Protected Planet/WDPA</div></button>
+          <button class="map-option" data-layer="reef"><div class="mo-title">Coral Reef Extent</div><div class="mo-sub">130 real coral occurrence records · GBIF</div></button>
+          <button class="map-option" data-layer="kelp"><div class="mo-title">Kelp &amp; Algae Forests</div><div class="mo-sub">130 real kelp occurrence records · GBIF</div></button>
+          <button class="map-option" data-layer="mangrove"><div class="mo-title">Mangroves</div><div class="mo-sub">130 real mangrove occurrence records · GBIF</div></button>
+          <button class="map-option" data-layer="saltmarsh"><div class="mo-title">Salt Marshes</div><div class="mo-sub">130 real salt marsh occurrence records · GBIF</div></button>
+          <button class="map-option" data-layer="tidalflat"><div class="mo-title">Tidal Flats</div><div class="mo-sub">130 real tidal flat occurrence records · GBIF</div></button>
+        </div>
+      </div>
+
+      <!-- ================= BIODIVERSITY ================= -->
+      <div class="map-group" data-group="biodiversity">
+        <button class="map-group-head"><span class="mgh-title">Biodiversity</span><svg class="mgh-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <div class="map-group-body">
+          <button class="map-option" data-layer="birds"><div class="mo-title">Birds</div><div class="mo-sub">120 real GBIF records · 30 at-risk species</div></button>
+          <button class="map-option" data-layer="reptiles"><div class="mo-title">Reptiles</div><div class="mo-sub">110 real GBIF records · 11 at-risk species</div></button>
+          <button class="map-option" data-layer="mammals"><div class="mo-title">Mammals</div><div class="mo-sub">121 real GBIF records · 31 at-risk species</div></button>
+        </div>
+      </div>
+
+      <!-- ================= SHIPPING ================= -->
+      <div class="map-group" data-group="human-activity">
+        <button class="map-group-head"><span class="mgh-title">Human Activity</span><svg class="mgh-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <div class="map-group-body">
+          <button class="map-option" data-layer="ais"><div class="mo-title">Live Vessel Positions</div><div class="mo-sub">Real-time AIS · Digitraffic (Baltic &amp; Nordic waters)</div></button>
+          <button class="map-option" data-layer="corridors"><div class="mo-title">Major Trade Corridors</div><div class="mo-sub">6 real global routes · reference only</div></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-bottom-bar" id="mapBottomBar">
+    <div class="map-timeline" id="mapTimeline">
+      <button class="timeline-play" title="Play" aria-label="Play timeline">
+        <svg class="icon-play" viewBox="0 0 16 16" fill="none"><path d="M4 2.5v11l10-5.5-10-5.5Z" fill="currentColor"/></svg>
+        <svg class="icon-pause" viewBox="0 0 16 16" fill="none"><path d="M4 2.5h2.6v11H4v-11Zm5.4 0H12v11H9.4v-11Z" fill="currentColor"/></svg>
+      </button>
+      <input type="range" id="timelineSlider" class="timeline-slider" min="0" max="1" step="1" value="0" aria-label="Timeline year" />
+      <span class="timeline-year" id="timelineYearLabel"></span>
+    </div>
+
+    <div class="map-legend" id="mapLegend"></div>
+
+    <div class="map-scenario-box" id="mapScenarioBox">
+      <span class="map-scenario-title">Projected</span>
+      <button class="scenario-btn" data-scenario="likely" title="Show a projected +2.0°C world" aria-label="Show a projected +2.0°C world">+2.0°C</button>
+      <button class="scenario-btn" data-scenario="potential" title="Show a projected +3.0°C world" aria-label="Show a projected +3.0°C world">+3.0°C</button>
+    </div>
+  </div>
+
+  <div class="map-toolbar" id="mapToolbar">
+    <button id="screenshotBtn" title="Save a screenshot" aria-label="Save a screenshot"><svg viewBox="0 0 20 20" fill="none"><path d="M4 7h2.5L8 4.5h4L13.5 7H16a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="11.5" r="2.6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    <button id="adjustViewBtn" title="Adjust view" aria-label="Adjust view" aria-expanded="false"><svg viewBox="0 0 20 20" fill="none"><path d="M1.5 10S4.5 4.5 10 4.5 18.5 10 18.5 10 15.5 15.5 10 15.5 1.5 10 1.5 10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="10" r="2.6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    <div class="map-toolbar-sep"></div>
+    <button id="zoomInBtn" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 20 20" fill="none"><path d="M10 5v10M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <button id="zoomOutBtn" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 20 20" fill="none"><path d="M5 10h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+
+  <div class="adjust-view-flyout" id="adjustViewFlyout">
+    <h4>Adjust view</h4>
+    <button class="avf-item" id="toggleProjectionBtn">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 10h15M10 2.5a11 11 0 0 1 0 15 11 11 0 0 1 0-15Z" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span id="toggleProjectionLabel">Show globe view</span>
+    </button>
+    <button class="avf-item" id="toggleBordersBtn">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M3 3l14 14M3 17 17 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2.5" y="2.5" width="15" height="15" rx="2" stroke="currentColor" stroke-width="1.3"/></svg>
+      <span id="toggleBordersLabel">Hide country borders</span>
+    </button>
+    <button class="avf-item" id="tourBtn">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M3 16 3 5l5 2 4-2 5 2v11l-5-2-4 2-5-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>Take a quick tour</span>
+    </button>
+  </div>
+
+  <div class="tour-caption" id="tourCaption">
+    <div class="tour-text" id="tourText"></div>
+    <div class="tour-controls">
+      <button id="tourSkipBtn">Skip</button>
+      <button id="tourNextBtn">Next</button>
+    </div>
+  </div>
+
+  <div class="map-loading" id="mapLoading"><span class="spin"></span><span class="ml-text">Loading…</span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.0/maplibre-gl.min.js"></script>
+</div>
+
+<script src="js/search-data.js?v=3"></script>
+<script src="js/main.js?v=39"></script>
+<script src="js/map-data.js?v=39"></script>
+<script src="js/map.js?v=39"></script>
+</body>
+</html>
