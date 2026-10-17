@@ -785,6 +785,21 @@ a.card:hover::before, .feature-card:hover::before, .course-topic-card:hover::bef
 .insight-byline b{ color:var(--fg-strong); font-weight:700; }
 
 /* ============================== FOUNDER QUOTE ============================== */
+/* Studio logos under the Acknowledgments copy: a small centered
+   label, then the logos with a hairline running out to the page
+   edge on both sides. */
+.ack-collab{ margin-top:48px; text-align:center; }
+.ack-collab-label{ font-family: var(--font-mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color: var(--fg-faint); margin:0 0 20px; }
+.ack-logos{ display:flex; align-items:center; gap:36px; }
+.ack-logos::before, .ack-logos::after{ content:""; flex:1; height:1px; background: var(--border-soft); }
+.ack-logo-pair{ display:flex; align-items:center; justify-content:center; gap:56px; flex-wrap:wrap; }
+.ack-logo{ display:flex; align-items:center; }
+.ack-logo img{ display:block; width:auto; max-width:none; opacity:0.9; transition: opacity .2s; }
+.ack-logo-nf img{ height:38px; }
+.ack-logo-bd img{ height:24px; }
+a.ack-logo:hover img{ opacity:1; }
+@media (max-width:640px){ .ack-logos{ gap:20px; } .ack-logo-pair{ gap:28px; } .ack-logo-nf img{ height:30px; } .ack-logo-bd img{ height:19px; } }
+
 .founder-quote{
   display:flex; gap:22px; align-items:flex-start;
   background: var(--panel); border:1px solid var(--border-soft); border-left:3px solid var(--teal);
@@ -810,6 +825,27 @@ a.card:hover::before, .feature-card:hover::before, .course-topic-card:hover::bef
 .prose{ max-width: 74ch; }
 .prose p + p{ margin-top:15px; }
 .prose h3{ margin-top:38px; margin-bottom:14px; }
+/* Long-form article elements: lists, figures, dividers, credits */
+.prose h3:first-child, .prose .fig-credit + h3{ margin-top:22px; }
+.prose p + ul, .prose ul + p{ margin-top:18px; }
+.prose ul{ list-style:none; margin:20px 0 0; padding:0; }
+.prose li{ position:relative; padding-left:22px; margin-top:14px; line-height:1.65; }
+.prose li::before{ content:""; position:absolute; left:2px; top:0.72em; width:6px; height:6px; border-radius:50%; background: var(--teal); }
+.prose li strong, .prose p strong{ color: var(--fg-strong); }
+.prose a{ text-decoration:underline; text-decoration-color: var(--border); text-underline-offset:3px; transition: color .15s, text-decoration-color .15s; }
+.prose a:hover{ color: var(--teal); text-decoration-color: var(--teal); }
+.prose hr{ border:none; border-top:1px solid var(--border-soft); margin:44px 0 6px; }
+.prose h4{ font-family: var(--font-mono); font-weight:700; font-size:17px; color: var(--fg-strong); margin:30px 0 10px; line-height:1.4; }
+.prose h4 + p{ margin-top:0; }
+.prose figure{ margin:34px 0; }
+.prose .fig-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:34px 0; }
+.prose .fig-grid figure{ margin:0; }
+.prose .fig-grid figure:last-child:nth-child(odd){ grid-column:1 / -1; }
+@media (max-width:560px){ .prose .fig-grid{ grid-template-columns:1fr; } }
+.prose figure img{ width:100%; height:auto; border-radius: var(--radius-lg); border:1px solid var(--border-soft); background:#fff; }
+.prose figcaption, .prose .fig-credit{ font-size:13px; color: var(--fg-faint); line-height:1.5; }
+.prose figcaption{ margin-top:10px; }
+.prose .fig-credit{ margin:0 0 6px; }
 /* Full-width variant used on About/Resources — same wide measure as
    every other section on the site instead of the narrower reading
    column, with body paragraphs reflowed into two columns to use the
